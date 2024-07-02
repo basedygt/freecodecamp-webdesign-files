@@ -19,7 +19,8 @@
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
                         link.textContent = item.name;
-                        link.href = item.html_url;
+                        // Set href to basedygt.github.io/repo/ + item.name
+                        link.href = `https://basedygt.github.io/freecodecamp-webdesign-files/${item.name}`;
                         listItem.appendChild(link);
                         fileList.appendChild(listItem);
                     }

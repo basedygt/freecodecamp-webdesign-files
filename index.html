@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Listing</title>
+</head>
+<body>
+    <h1>Directory Listing</h1>
+    <ul id="fileList">
+    </ul>
+    <script>
+        fetch('https://api.github.com/repos/basedygt/freecodecamp-webdesign-files/contents')
+            .then(response => response.json())
+            .then(data => {
+                const fileList = document.getElementById('fileList');
+                data.forEach(item => {
+                    if (item.type === 'file') {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.textContent = item.name;
+                        link.href = item.html_url;
+                        listItem.appendChild(link);
+                        fileList.appendChild(listItem);
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching repository contents:', error));
+    </script>
+</body>
+</html>
